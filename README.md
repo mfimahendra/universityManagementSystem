@@ -1,5 +1,4 @@
 # universityManagementSystem
 
-It's Doesn't Work
-Don't Clone it, I've warn you :) 
-Still Learning
+It's Doesn't Work,
+Somebody please help meeeh

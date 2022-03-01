@@ -3,26 +3,26 @@ package com.model;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Students {
-    private final SimpleStringProperty ID;
+    private final SimpleStringProperty id;
     private final SimpleStringProperty name;
-    private final SimpleStringProperty Country;
+    private final SimpleStringProperty country;
 
-    public Students(String ID, String name, String Country) {
-        this.ID = new SimpleStringProperty(ID);
+    public Students(String id, String name, String country) {
+        this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.Country = new SimpleStringProperty(Country);
+        this.country = new SimpleStringProperty(country);
     }
 
-    public String getID() {
-        return ID.get();
+    public String getId() {
+        return id.get();
     }
 
-    public SimpleStringProperty IDProperty() {
-        return ID;
+    public SimpleStringProperty idProperty() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID.set(ID);
+    public void setId(String id) {
+        this.id.set(id);
     }
 
     public String getName() {
@@ -38,14 +38,14 @@ public class Students {
     }
 
     public String getCountry() {
-        return Country.get();
+        return country.get();
     }
 
     public SimpleStringProperty countryProperty() {
-        return Country;
+        return country;
     }
 
     public void setCountry(String country) {
-        this.Country.set(country);
+        this.country.set(country);
     }
 }

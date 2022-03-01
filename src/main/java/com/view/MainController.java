@@ -12,6 +12,8 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+
+
 public class MainController implements Initializable {
 
     @FXML
@@ -104,7 +106,7 @@ public class MainController implements Initializable {
             rs = st.executeQuery(query);
             Students students;
             while(rs.next()){
-                students = new Students(rs.getString("id"), rs.getString("name"), rs.getString("country"));
+                students = new Students(rs.getString(1), rs.getString(2), rs.getString(3));
                 studentsList.add(students);
             }
 
@@ -117,9 +119,9 @@ public class MainController implements Initializable {
     public void showStudents(){
         ObservableList<Students> list = getStudentList();
 
-        table_students_id.setCellValueFactory(new PropertyValueFactory<Students, String>("id"));
-        table_students_name.setCellValueFactory(new PropertyValueFactory<Students, String>("name"));
-        table_students_country.setCellValueFactory(new PropertyValueFactory<Students, String>("country"));
+        table_students_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        table_students_name.setCellValueFactory(new PropertyValueFactory<>( "Name"));
+        table_students_country.setCellValueFactory(new PropertyValueFactory<>( "Country"));
 
         table_students.setItems(list);
     }

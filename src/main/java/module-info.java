@@ -5,5 +5,6 @@ module com.nuist.universitymanagementsystem {
 
 
     opens com.view to javafx.fxml;
+    opens com.model to javafx.base;
     exports com.view;
 }

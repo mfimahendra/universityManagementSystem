@@ -1,5 +1,6 @@
 package com.view;
 
+import com.config.Database;
 import com.model.Students;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,28 +76,20 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        showStudents();
-    }
-
-//  End of JavaFx code
-
-    public Connection getConnection(){
-        //connect to database
-        Connection conn;
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_university", "root", "$_=+St3ph1n3");
-            return conn;
-        }catch(Exception e){
+        try {
+            showStudents();
+        } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Failed to connect to database");
-            return null;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
-    public ObservableList<Students> getStudentList(){
+
+    public ObservableList<Students> getStudentList() throws SQLException, ClassNotFoundException {
         ObservableList<Students> studentsList = FXCollections.observableArrayList();
-        Connection conn = getConnection();
+        Database conn = new Database();
+        conn.getConnection();
         String query = "SELECT * FROM students";
         Statement st;
         ResultSet rs;
@@ -116,7 +109,7 @@ public class MainController implements Initializable {
         return studentsList;
     }
 
-    public void showStudents(){
+    public void showStudents() throws SQLException, ClassNotFoundException {
         ObservableList<Students> list = getStudentList();
 
         table_students_id.setCellValueFactory(new PropertyValueFactory<>("Id"));

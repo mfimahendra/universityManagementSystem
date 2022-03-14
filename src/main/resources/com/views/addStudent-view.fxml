@@ -10,24 +10,23 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.StudentController">
    <top>
-      <Label style="-fx-padding: 15px;" text="Add Student" textAlignment="CENTER" BorderPane.alignment="CENTER">
+      <Label prefHeight="30.0" prefWidth="145.0" style="-fx-padding: 15px;" text="Add Student" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
             <Font name="Segoe UI Semibold" size="20.0" />
          </font>
       </Label>
    </top>
    <bottom>
-      <Button id="btn_studentSubmit" mnemonicParsing="false" text="Submit" BorderPane.alignment="CENTER">
+      <Button id="btn_studentSubmit" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Submit" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" />
          </BorderPane.margin>
       </Button>
    </bottom>
    <center>
-      <GridPane alignment="CENTER" vgap="10.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" prefHeight="133.0" prefWidth="300.0" vgap="10.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -62,6 +61,9 @@
                </GridPane.margin>
             </TextField>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </GridPane>
    </center>
 </BorderPane>

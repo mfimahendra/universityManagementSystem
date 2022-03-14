@@ -1,4 +1,4 @@
-package com.view;
+package com.views;
 
 import java.sql.*;
 

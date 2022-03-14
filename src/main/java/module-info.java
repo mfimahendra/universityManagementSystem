@@ -5,8 +5,12 @@ module com.nuist.universitymanagementsystem {
     requires mysql.connector.java;
 
 
-    opens com.view to javafx.fxml;
+    opens com.views to javafx.fxml;
     opens com.model to javafx.base;
-    exports com.view;
-    opens com.config to javafx.base;
+    exports com.views;
+    opens com.app to javafx.base;
+    exports com.controller;
+    opens com.controller to javafx.fxml;
+    exports com.dao;
+    opens com.dao to javafx.fxml;
 }

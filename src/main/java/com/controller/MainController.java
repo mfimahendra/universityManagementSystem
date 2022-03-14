@@ -1,16 +1,19 @@
-package com.view;
+package com.controller;
 
-import com.config.Database;
+import com.app.RouteConfig;
+import com.dao.CourseDAO;
+import com.dao.StudentDAO;
+import com.model.Courses;
 import com.model.Students;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -24,7 +27,7 @@ public class MainController implements Initializable {
     private Button btn_addEnrollment;
 
     @FXML
-    private Button btn_addStudent;
+    public Button btn_addStudent;
 
     @FXML
     private Button btn_editCourses;
@@ -74,43 +77,38 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Students, String> table_students_name;
 
+    @FXML
+    private TableView<Courses> table_courses;
+
+    @FXML
+    private TableColumn<Courses, String> table_courses_id;
+
+    @FXML
+    private TableColumn<Courses, String> table_courses_major;
+
+    @FXML
+    private TableColumn<Courses, String> table_courses_name;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             showStudents();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+            showCourses();
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-
-    public ObservableList<Students> getStudentList() throws SQLException, ClassNotFoundException {
-        ObservableList<Students> studentsList = FXCollections.observableArrayList();
-        Database conn = new Database();
-        conn.getConnection();
-        String query = "SELECT * FROM students";
-        Statement st;
-        ResultSet rs;
-
-        try{
-            st = conn.createStatement();
-            rs = st.executeQuery(query);
-            Students students;
-            while(rs.next()){
-                students = new Students(rs.getString(1), rs.getString(2), rs.getString(3));
-                studentsList.add(students);
-            }
-
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-        return studentsList;
+    //Main Routing
+    public void route(ActionEvent actionEvent) {
+        RouteConfig route = new RouteConfig();
+        route.routing(actionEvent) ;
     }
 
+    //Table View
     public void showStudents() throws SQLException, ClassNotFoundException {
-        ObservableList<Students> list = getStudentList();
+        StudentDAO students = new StudentDAO();
+        ObservableList<Students> list = students.getStudentList();
 
         table_students_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
         table_students_name.setCellValueFactory(new PropertyValueFactory<>( "Name"));
@@ -119,5 +117,14 @@ public class MainController implements Initializable {
         table_students.setItems(list);
     }
 
+    public void showCourses() throws SQLException, ClassNotFoundException {
+        CourseDAO courses = new CourseDAO();
+        ObservableList<Courses> list = courses.getCoursesList();
 
+        table_courses_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        table_courses_name.setCellValueFactory(new PropertyValueFactory<>( "Name"));
+        table_courses_major.setCellValueFactory(new PropertyValueFactory<>( "Major"));
+
+        table_courses.setItems(list);
+    }
 }

@@ -1,11 +1,11 @@
-package com.config;
+package com.app;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Database {
+public class DatabaseConfig {
 
     public static Connection conn;
     private static String url = "jdbc:mysql://localhost:3306/";
@@ -13,7 +13,7 @@ public class Database {
     private static String userName = "guest";
     private static String password = "guest";
 
-    public Database() {
+    public DatabaseConfig() {
 
     }
 

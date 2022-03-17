@@ -11,8 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RouteConfig {
-    String directory;
-    String title;
 
     //route
     public void routing(ActionEvent mouseEvent) {
@@ -20,12 +18,10 @@ public class RouteConfig {
         System.out.println(action);
         switch (action) {
             //Route for AddStudent
-            case "Button[id=btn_addStudent, styleClass=button]'Add Student'":
-            case "MenuItem[id=nav_addStudent, styleClass=[menu-item]]":
-                directory = "addStudent-view.fxml";
-                title = "Add Student";
-                loadStage(directory,title);
-                break;
+            case "Button[id=btn_addStudent, styleClass=button]'Add Student'", "MenuItem[id=nav_addStudent, styleClass=[menu-item]]" -> {
+                loadStage("addStudent-view.fxml", "Add Student");
+            }
+
         }
     }
 

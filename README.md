@@ -1,4 +1,4 @@
-# universityManagementSystem
+# University Management System
 
-It's Doesn't Work,
-Somebody please help meeeh
+This is School Project for **University Management System**.
+It is MVC based Desktop Application, and using MySQL for Database.

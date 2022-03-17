@@ -33,4 +33,18 @@ public class StudentDAO {
         }
         return studentsList;
     }
+
+    public void addStudent(String student_id, String student_name, String student_country) throws SQLException, ClassNotFoundException {
+        DatabaseConfig conn = new DatabaseConfig();
+        conn.getConnection();
+        String query = "INSERT INTO students (id, name, country) VALUES ('"+student_id+"', '"+student_name+"', '"+student_country+"')";
+        System.out.println(query);
+        Statement st;
+        try{
+            st = conn.createStatement();
+            st.executeUpdate(query);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
 }

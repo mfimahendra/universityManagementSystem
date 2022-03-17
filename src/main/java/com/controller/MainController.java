@@ -106,19 +106,20 @@ public class MainController implements Initializable {
     }
 
     //Table View
+    StudentDAO students = new StudentDAO();
+    CourseDAO courses = new CourseDAO();
+
     public void showStudents() throws SQLException, ClassNotFoundException {
-        StudentDAO students = new StudentDAO();
         ObservableList<Students> list = students.getStudentList();
 
-        table_students_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        table_students_name.setCellValueFactory(new PropertyValueFactory<>( "Name"));
-        table_students_country.setCellValueFactory(new PropertyValueFactory<>( "Country"));
+        table_students_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        table_students_name.setCellValueFactory(new PropertyValueFactory<>( "name"));
+        table_students_country.setCellValueFactory(new PropertyValueFactory<>( "country"));
 
         table_students.setItems(list);
     }
 
     public void showCourses() throws SQLException, ClassNotFoundException {
-        CourseDAO courses = new CourseDAO();
         ObservableList<Courses> list = courses.getCoursesList();
 
         table_courses_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
@@ -126,5 +127,16 @@ public class MainController implements Initializable {
         table_courses_major.setCellValueFactory(new PropertyValueFactory<>( "Major"));
 
         table_courses.setItems(list);
+    }
+
+    @FXML
+    void refresh(ActionEvent event) {
+        try {
+            showStudents();
+            showCourses();
+            System.out.println("Refreshed");
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
